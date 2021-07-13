@@ -1,0 +1,29 @@
+.Pagination {
+  display: flex;
+  border-radius: 8px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  background-color: rgb(100, 160, 160);
+  text-align: center;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.Pagination .listItem {
+  list-style: none;
+}
+
+.Pagination button{
+  padding: 1px 10px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.active {
+  padding: 1px 10px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgb(165, 69, 82);
+}

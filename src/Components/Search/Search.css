@@ -1,0 +1,16 @@
+.Search {
+    border-radius: 8px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    background-color: rgb(245, 253, 253);
+    margin-bottom: 10px;
+}
+
+input {
+    margin: 5px;
+    font-size: 25px;
+}
+
+img{
+    width: 25px;
+}

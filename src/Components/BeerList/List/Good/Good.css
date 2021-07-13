@@ -1,0 +1,31 @@
+.ListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 93%;
+    height: 150px;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+  .ListItem input {
+    margin: 0 20px;
+    height: 30px;
+    width: 25px;
+  }
+  
+  .ListItem .beerImg {
+    width: 27px;
+    margin: 0 10px;
+    padding-left: 15px;
+  }
+  
+  .ListItem span {
+    padding-left: 15px;
+    display: inline-block;
+    width: calc(100% / 5);
+  }

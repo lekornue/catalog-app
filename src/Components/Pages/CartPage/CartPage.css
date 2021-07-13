@@ -1,0 +1,36 @@
+.CartPage {
+  padding: 5px 70px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  background-color: rgb(245, 253, 253);
+  margin-bottom: 10px;
+  text-align: left;
+  padding-bottom: 30px;
+}
+
+.cart-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.cart-table th {
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 2px solid #dee2e6;
+  text-align: center;
+}
+
+.cart-table td {
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.trashBtn {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-image: url('./trash_bin_icon.svg');
+  background-size: 25px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
