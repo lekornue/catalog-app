@@ -2,7 +2,13 @@ import React from "react";
 import List from "./List/List";
 import "./BeerList.css";
 
-export default function BeerList({ data, dataCart, productsInCart, updateData }) {
+export default function BeerList({
+  data,
+  dataCart,
+  productsInCart,
+  updateData,
+  pugNumber,
+}) {
   return (
     <section className="BeerList">
       <div className="header">
@@ -19,6 +25,7 @@ export default function BeerList({ data, dataCart, productsInCart, updateData })
         dataCart={dataCart}
         productsInCart={productsInCart}
         updateData={updateData}
+        pugNumber={pugNumber}
       />
     </section>
   );

@@ -12,6 +12,7 @@ export default function CategoriesList({
   strSearch,
   productsInCart,
   updateData,
+  pugNumber,
 }) {
   return (
     <div className="CategoriesList">
@@ -23,8 +24,9 @@ export default function CategoriesList({
         dataCart={dataCart}
         productsInCart={productsInCart}
         updateData={updateData}
+        pugNumber={pugNumber}
       />
-      <Pagination dataForPag={data} updateData={updateData} />
+      <Pagination updateData={updateData} />
     </div>
   );
 }

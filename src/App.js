@@ -17,6 +17,7 @@ function App() {
     productsInCart: 0,
     showModal: false,
     closeOnEsc: true,
+    pugNumber: 0,
   });
 
   useEffect(() => {
@@ -30,15 +31,15 @@ function App() {
 
   function udatePage() {
     setTimeout(() => {
-      fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=5`)
+      fetch(`https://api.punkapi.com/v2/beers`)
         .then((resp) => resp.json())
-        .then((data) =>
+        .then((data) => {
           updateData({
             data: data,
             dataActive: data[0],
             loading: false,
-          })
-        );
+          });
+        });
     }, 1000);
   }
 
@@ -66,15 +67,13 @@ function App() {
     productsInCart,
     showModal,
     closeOnEsc,
+    pugNumber,
   } = state;
 
   return (
     <Fragment>
       <div className="App">
-        <Header
-          productsInCart={productsInCart}
-          onModalClose={toggleModal}
-        />
+        <Header productsInCart={productsInCart} onModalClose={toggleModal} />
         <main>
           <div className="container">
             {loading ? (
@@ -88,10 +87,11 @@ function App() {
                     <CategoriesList
                       data={data}
                       dataActive={dataActive}
-                      dataCart = {dataCartGoods}
+                      dataCart={dataCartGoods}
                       strSearch={strSearch}
                       productsInCart={productsInCart}
                       updateData={updateData}
+                      pugNumber={pugNumber}
                     />
                   )}
                 />

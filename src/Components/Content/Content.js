@@ -9,6 +9,7 @@ export default function Content({
   dataCart,
   productsInCart,
   updateData,
+  pugNumber,
 }) {
   return (
     <div className="Content">
@@ -17,6 +18,7 @@ export default function Content({
         dataCart={dataCart}
         productsInCart={productsInCart}
         updateData={updateData}
+        pugNumber={pugNumber}
       />
       <DetailInfo active={active} />
     </div>

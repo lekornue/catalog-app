@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import uuid from "react-uuid";
 import "./Pagination.css";
 
-export default function Pagination({ dataForPag, updateData }) {
-  console.log("render");
+export default function Pagination({ updateData }) {
   let pagList = ["<", "1", "2", "3", "4", ">"];
 
-  const [pugNum, setPugNum] = useState(1);
+  const [pugNum, setPugNum] = useState(0);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     fetch(`https://api.punkapi.com/v2/beers?page=${pugNum}&per_page=5`)
       .then((resp) => resp.json())
       .then((data) => {
@@ -21,8 +20,16 @@ export default function Pagination({ dataForPag, updateData }) {
           data: dataPag,
           dataActive: data[0],
           loading: false,
+          pugNumber: +pugNum,
         });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pugNum]); */
+
+  useEffect(() => {
+    updateData({
+      pugNumber: pugNum,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pugNum]);
 
@@ -39,10 +46,11 @@ export default function Pagination({ dataForPag, updateData }) {
   return (
     <ul className="Pagination">
       {pagList.map((el) => {
+        let pug = pugNum === 0 ? 1 : pugNum;
         return (
           <li key={uuid()} className="listItem">
             <button
-              className={+pugNum === +el ? "active" : ""}
+              className={+pug === +el ? "active" : ""}
               onClick={updatePaginationNum}
             >
               {el}
