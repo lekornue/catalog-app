@@ -98,7 +98,14 @@ function App() {
                 <Route
                   path="/cart"
                   exact={true}
-                  render={() => <CartPage dataCartGoods={dataCartGoods} />}
+                  render={() => (
+                    <CartPage
+                      data={data}
+                      dataCartGoods={dataCartGoods}
+                      productsInCart={productsInCart}
+                      updateData={updateData}
+                    />
+                  )}
                 />
               </Switch>
             )}

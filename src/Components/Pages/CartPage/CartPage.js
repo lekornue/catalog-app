@@ -1,9 +1,15 @@
 import React from "react";
 import uuid from "react-uuid";
+import { deleteDataCartGoods } from "../../../services/deleteDataGoods";
 import "./CartPage.css";
 
-export default function CartPage({ dataCartGoods }) {
-  const renderRow = ({ name, abv, ibu, image_url }, i) => {
+export default function CartPage({
+  data,
+  dataCartGoods,
+  productsInCart,
+  updateData,
+}) {
+  const renderRow = ({ name, abv, ibu, image_url, id }, i) => {
     return (
       <tr key={uuid()}>
         <td>{i + 1}</td>
@@ -14,7 +20,18 @@ export default function CartPage({ dataCartGoods }) {
           <img src={image_url} alt="" />
         </td>
         <td>
-          <div className="trashBtn"></div>
+          <div
+            className="trashBtn"
+            onClick={() => {
+              deleteDataCartGoods(
+                id,
+                dataCartGoods,
+                productsInCart,
+                updateData,
+                data
+              );
+            }}
+          ></div>
         </td>
       </tr>
     );
