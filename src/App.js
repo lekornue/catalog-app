@@ -5,6 +5,9 @@ import Header from "./Components/Header/Header";
 import Spinner from "./Components/Spinner/Spinner";
 import CartPage from "./Components/Pages/CartPage/CartPage";
 import Modal from "./Components/ModalDialog/ModalDialog";
+import { inputBlur } from "./services/inputBlur";
+import { inputFocus } from "./services/InputFocus";
+import { fetchData } from "./services/fetchData";
 import "./App.css";
 
 function App() {
@@ -20,29 +23,6 @@ function App() {
     pugNumber: 0,
   });
 
-  useEffect(() => {
-    udatePage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
-  function udatePage() {
-    setTimeout(() => {
-      fetch(`https://api.punkapi.com/v2/beers`)
-        .then((resp) => resp.json())
-        .then((data) => {
-          updateData({
-            data: data,
-            dataActive: data[0],
-            loading: false,
-          });
-        });
-    }, 1000);
-  }
-
   function updateData(data) {
     setState((prevState) => {
       return {
@@ -52,52 +32,14 @@ function App() {
     });
   }
 
+  useEffect(() => {
+    fetchData(updateData);
+  }, []);
+
   function toggleModal() {
     updateData({
       showModal: !showModal,
     });
-  }
-
-  function inputBlur({ target }) {
-    let error = document.getElementById("error");
-    switch (target.id) {
-      case "name":
-        if (target.value === "") {
-          error.innerHTML = `Пожалуйста, заполните поле ${target.id}.`;
-        }
-        break;
-      case "date of birth":
-        if (target.value === "") {
-          error.innerHTML = `Пожалуйста, заполните поле ${target.id}.`;
-        }
-        break;
-      case "e-mail":
-        if (target.value === "") {
-          error.innerHTML = `Пожалуйста, заполните поле ${target.id}.`;
-        } else if (!target.value.includes("@")) {
-          target.classList.add("invalid");
-          error.innerHTML = `Пожалуйста, введите правильный email.`;
-        }
-        break;
-      case "password":
-        if (target.value === "") {
-          error.innerHTML = `Пожалуйста, заполните поле ${target.id}.`;
-        } else if (target.value.length < 6) {
-          target.classList.add("invalid");
-          error.innerHTML = `Пожалуйста, введите пароль более 6 символов.`;
-        }
-        break;
-      default:
-        alert("Нет таких значений");
-    }
-  }
-
-  function inputFocus({ target }) {
-    let error = document.getElementById("error");
-    if (target.classList.contains("invalid")) {
-      target.classList.remove("invalid");
-      error.innerHTML = "";
-    }
   }
 
   const {
@@ -218,11 +160,7 @@ function App() {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <button
-              className="submit-btn"
-              title="Закрыть окно"
-              onClick={toggleModal}
-            >
+            <button className="submit-btn" title="Submit" onClick={toggleModal}>
               Submit
             </button>
             <button
