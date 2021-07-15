@@ -26,7 +26,7 @@ export default function CategoriesList({
         updateData={updateData}
         pugNumber={pugNumber}
       />
-      <Pagination updateData={updateData} />
+      <Pagination data={data} updateData={updateData} />
     </div>
   );
 }

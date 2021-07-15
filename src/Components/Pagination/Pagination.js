@@ -2,33 +2,16 @@ import React, { useState, useEffect } from "react";
 import uuid from "react-uuid";
 import "./Pagination.css";
 
-export default function Pagination({ updateData }) {
+export default function Pagination({ data, updateData }) {
   let pagList = ["<", "1", "2", "3", "4", ">"];
 
   const [pugNum, setPugNum] = useState(0);
 
-  /*   useEffect(() => {
-    fetch(`https://api.punkapi.com/v2/beers?page=${pugNum}&per_page=5`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log("hello");
-        let dataPag =
-          data[0].id === dataForPag[0].id
-            ? Object.values({ ...data, ...dataForPag })
-            : data;
-        updateData({
-          data: dataPag,
-          dataActive: data[0],
-          loading: false,
-          pugNumber: +pugNum,
-        });
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pugNum]); */
-
   useEffect(() => {
+    let pug = +pugNum === 0 ? 0 : +pugNum * 5 - 5;
     updateData({
       pugNumber: pugNum,
+      dataActive: data[pug],
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pugNum]);

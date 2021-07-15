@@ -6,8 +6,10 @@ import Spinner from "./Components/Spinner/Spinner";
 import CartPage from "./Components/Pages/CartPage/CartPage";
 import Modal from "./Components/ModalDialog/ModalDialog";
 import { inputBlur } from "./services/inputBlur";
-import { inputFocus } from "./services/InputFocus";
+import { inputFocus } from "./services/inputFocus";
 import { fetchData } from "./services/fetchData";
+import { toggleModal } from "./services/toggleModal";
+
 import "./App.css";
 
 function App() {
@@ -36,12 +38,6 @@ function App() {
     fetchData(updateData);
   }, []);
 
-  function toggleModal() {
-    updateData({
-      showModal: !showModal,
-    });
-  }
-
   const {
     data,
     dataActive,
@@ -57,7 +53,12 @@ function App() {
   return (
     <Fragment>
       <div className="App">
-        <Header productsInCart={productsInCart} onModalClose={toggleModal} />
+        <Header
+          productsInCart={productsInCart}
+          onModalClose={() => {
+            toggleModal(updateData, showModal);
+          }}
+        />
         <main>
           <div className="container">
             {loading ? (
@@ -100,7 +101,12 @@ function App() {
         </div>
       </div>
       {showModal && (
-        <Modal onModalClose={toggleModal} closeOnEsc={closeOnEsc}>
+        <Modal
+          onModalClose={() => {
+            toggleModal(updateData, showModal);
+          }}
+          closeOnEsc={closeOnEsc}
+        >
           <Modal.Header>Registration</Modal.Header>
           <Modal.Body>
             <form className="form">
@@ -160,13 +166,21 @@ function App() {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <button className="submit-btn" title="Submit" onClick={toggleModal}>
+            <button
+              className="submit-btn"
+              title="Submit"
+              onClick={() => {
+                toggleModal(updateData, showModal);
+              }}
+            >
               Submit
             </button>
             <button
               className="close-btn"
               title="Закрыть окно"
-              onClick={toggleModal}
+              onClick={() => {
+                toggleModal(updateData, showModal);
+              }}
             >
               Закрыть
             </button>
