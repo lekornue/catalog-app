@@ -58,6 +58,48 @@ function App() {
     });
   }
 
+  function inputBlur({ target }) {
+    let error = document.getElementById("error");
+    switch (target.id) {
+      case "name":
+        if (target.value === "") {
+          error.innerHTML = `Пожалуйста, заполните поле ${target.id}.`;
+        }
+        break;
+      case "date of birth":
+        if (target.value === "") {
+          error.innerHTML = `Пожалуйста, заполните поле ${target.id}.`;
+        }
+        break;
+      case "e-mail":
+        if (target.value === "") {
+          error.innerHTML = `Пожалуйста, заполните поле ${target.id}.`;
+        } else if (!target.value.includes("@")) {
+          target.classList.add("invalid");
+          error.innerHTML = `Пожалуйста, введите правильный email.`;
+        }
+        break;
+      case "password":
+        if (target.value === "") {
+          error.innerHTML = `Пожалуйста, заполните поле ${target.id}.`;
+        } else if (target.value.length < 6) {
+          target.classList.add("invalid");
+          error.innerHTML = `Пожалуйста, введите пароль более 6 символов.`;
+        }
+        break;
+      default:
+        alert("Нет таких значений");
+    }
+  }
+
+  function inputFocus({ target }) {
+    let error = document.getElementById("error");
+    if (target.classList.contains("invalid")) {
+      target.classList.remove("invalid");
+      error.innerHTML = "";
+    }
+  }
+
   const {
     data,
     dataActive,
@@ -122,23 +164,67 @@ function App() {
             <form className="form">
               <div>
                 <span>{"name: "}</span>
-                <input type="text" />
+                <input
+                  type="text"
+                  id="name"
+                  onBlur={(e) => {
+                    inputBlur(e);
+                  }}
+                  onFocus={(e) => {
+                    inputFocus(e);
+                  }}
+                />
               </div>
               <div>
                 <span>{"date of birth: "}</span>
-                <input type="text" />
+                <input
+                  type="text"
+                  id="date of birth"
+                  onBlur={(e) => {
+                    inputBlur(e);
+                  }}
+                  onFocus={(e) => {
+                    inputFocus(e);
+                  }}
+                />
               </div>
               <div>
                 <span>{"e-mail: "}</span>
-                <input type="text" />
+                <input
+                  type="text"
+                  id="e-mail"
+                  onBlur={(e) => {
+                    inputBlur(e);
+                  }}
+                  onFocus={(e) => {
+                    inputFocus(e);
+                  }}
+                />
               </div>
               <div>
                 <span>{"password: "}</span>
-                <input type="text" />
+                <input
+                  type="text"
+                  id="password"
+                  onBlur={(e) => {
+                    inputBlur(e);
+                  }}
+                  onFocus={(e) => {
+                    inputFocus(e);
+                  }}
+                />
               </div>
+              <div id="error" className="error"></div>
             </form>
           </Modal.Body>
           <Modal.Footer>
+            <button
+              className="submit-btn"
+              title="Закрыть окно"
+              onClick={toggleModal}
+            >
+              Submit
+            </button>
             <button
               className="close-btn"
               title="Закрыть окно"

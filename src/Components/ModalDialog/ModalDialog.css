@@ -3,6 +3,8 @@
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -29,6 +31,7 @@
   border-bottom: solid 1px #d8dce3;
   font-size: 24px;
 }
+
 .modal-header-default:focus {
   outline-color: white;
 }
@@ -83,7 +86,7 @@
   border-top: solid 1px #d8dce3;
   padding: 10px 20px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .modal-footer-default__button-margin {
@@ -93,7 +96,21 @@
 .close-btn {
   font-weight: 600;
   box-shadow: rgba(0, 0, 0, 0.35) 0 2px 2px 0;
-  background-color:  rgb(100, 160, 160);
+  background-color: rgb(100, 160, 160);
+  color: rgb(247, 248, 250);
+  height: 35px;
+  width: 117px;
+  font-size: 14px;
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.submit-btn {
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 2px 2px 0;
+  background-color: rgb(216, 115, 115);
   color: rgb(247, 248, 250);
   height: 35px;
   width: 117px;
@@ -111,4 +128,15 @@
 
 .form div span {
   margin: auto 0;
+}
+
+.invalid {
+  border-color: red;
+}
+
+.error {
+  font-size: 18px;
+  color: red;
+  margin-top: 10px;
+  text-align: right;
 }
